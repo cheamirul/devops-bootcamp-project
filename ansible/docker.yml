@@ -1,0 +1,6 @@
+---
+- name: Install Docker menggunakan Galaxy Role
+  hosts: all
+  become: true
+  roles:
+    - geerlingguy.docker
