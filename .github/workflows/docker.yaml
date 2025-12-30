@@ -1,0 +1,14 @@
+name: Demo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tunjuk trigger
+        run: |
+          echo "Workflow ini triggered oleh: ${{ github.event_name }}"
