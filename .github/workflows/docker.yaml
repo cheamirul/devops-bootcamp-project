@@ -1,7 +1,5 @@
 name: Docker Build and push to ECR
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
