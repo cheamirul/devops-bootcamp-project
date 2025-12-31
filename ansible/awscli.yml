@@ -1,23 +1,24 @@
 ---
-- name: Install awscli
-  hosts: Web-Server
-  become: true
-  tasks:
-  - name: Install unzip
-    apt:
-      name: unzip
-      state: present
-      update_cache: yes
+- name: Install unzip package.
+  apt:
+    name: unzip
+    state: present
+    update_cache: yes
 
-  - name: Download and install AWS CLI v2
-    commands:
-      - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-      - unzip awscliv2.zip
-      - ./aws/install
-      - aws --version
+- name: Download the awscli bundle.
+  get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscliv2.zip
+  register: aws_cli_download_bundle
 
-- name: Install Docker menggunakan Galaxy Role
-  hosts: all
-  become: true
-  roles:
-    - geerlingguy.docker
+- name: Unarchive the installer.
+  unarchive: 
+    src: /tmp/awscliv2.zip 
+    dest: /tmp 
+    remote_src: yes
+    creates: /tmp/aws
+  when: aws_cli_download_bundle.changed
+  register: aws_cli_unarchive_installer
+
+- name: Install awscli package.
+  command: /tmp/aws/install
+  args:
+    creates: /usr/local/bin/aws
