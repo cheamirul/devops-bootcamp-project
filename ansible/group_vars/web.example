@@ -1,0 +1,6 @@
+aws_access_key_id: YOUR_AWS_ACCESS_KEY_ID
+aws_secret_access_key: YOUR_AWS_SECRET_ACCESS_KEY
+aws_region: ap-southeast-1
+ecr_registry_url: YOUR_ECR_REGISTRY_URL
+ecr_repository: YOUR_ECR_REPOSITORY_NAME
+user_name: YOUR_USER_NAME

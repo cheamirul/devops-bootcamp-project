@@ -1,24 +1,37 @@
 ---
-- name: Install unzip package.
-  apt:
-    name: unzip
-    state: present
-    update_cache: yes
+- name: Install AWS CLI & configure
+  hosts: web
+  become: true
+  tasks:
 
-- name: Download the awscli bundle.
-  get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=/tmp/awscliv2.zip
-  register: aws_cli_download_bundle
+    - name: Install unzip package.
+      apt:
+        name: unzip
+        state: present
+        update_cache: yes
 
-- name: Unarchive the installer.
-  unarchive: 
-    src: /tmp/awscliv2.zip 
-    dest: /tmp 
-    remote_src: yes
-    creates: /tmp/aws
-  when: aws_cli_download_bundle.changed
-  register: aws_cli_unarchive_installer
+    - name: Download the awscli bundle.
+      get_url: 
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip 
+        dest: /tmp/awscliv2.zip
 
-- name: Install awscli package.
-  command: /tmp/aws/install
-  args:
-    creates: /usr/local/bin/aws
+    - name: Unarchive the installer.
+      unarchive: 
+        src: /tmp/awscliv2.zip 
+        dest: /tmp 
+        remote_src: yes
+        creates: /tmp/aws
+
+    - name: Install awscli package.
+      command: /tmp/aws/install
+      args:
+        creates: /usr/local/bin/aws
+
+    - name: Configure AWS CLI with access key, secret key, and region
+      become: false
+      become_user: ubuntu
+      command: > /usr/local/bin/aws configure set {{ item.key }} {{ item.value }}
+      loop:
+        - { key: 'aws_access_key_id', value: '{{ aws_access_key_id }}' }
+        - { key: 'aws_secret_access_key', value: '{{ aws_secret_access_key }}' }
+        - { key: 'default.region', value: '{{ aws_region }}' } 

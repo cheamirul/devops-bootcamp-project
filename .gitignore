@@ -41,3 +41,6 @@ terraform.rc
 
 *.pem
 *.pub
+
+# ansible group_vars
+ansible/group_vars/*.yml

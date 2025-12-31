@@ -1,0 +1,26 @@
+---
+- name: pull image from ECR and run container
+  hosts: web
+  become: true
+  tasks:
+    - name: Log in to AWS ECR
+      community.docker.docker_login:
+        registry_url: "{{ ecr_registry_url }}"
+        username: AWS
+        password: "{{ lookup('amazon.aws.aws_ecr_login_password', region='ap-southeast-1') }}"
+
+    - name: Pull image from ECR
+      community.docker.docker_image:
+        name: "{{ ecr_registry_url }}/{{ ecr_repository }}:latest"
+        source: pull
+    
+    - name: Run Docker container
+      community.docker.docker_container:
+        name: web_app
+        image: "{{ ecr_registry_url }}/{{ ecr_repository }}:latest"
+        state: started
+        restart_policy: unless-stopped
+        ports:
+          - "80:80"
+        env:
+          USER_NAME: "{{ user_name }}"
