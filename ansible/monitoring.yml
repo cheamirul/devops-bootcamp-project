@@ -1,0 +1,7 @@
+---
+- name: Install Prometheus using docker
+  hosts: Monitoring-Server
+  become: true
+  tasks:
+    command:
+      - apt update
