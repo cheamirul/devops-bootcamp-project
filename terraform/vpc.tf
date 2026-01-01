@@ -5,8 +5,8 @@ resource "aws_vpc" "devops_vpc" {
   }
 }
 resource "aws_subnet" "private_subnet" {
-  vpc_id            = aws_vpc.devops_vpc.id
-  cidr_block        = "10.0.0.128/25"
+  vpc_id     = aws_vpc.devops_vpc.id
+  cidr_block = "10.0.0.128/25"
 
   tags = {
     Name = "devops-private-subnet"
@@ -14,8 +14,8 @@ resource "aws_subnet" "private_subnet" {
 }
 
 resource "aws_subnet" "public_subnet" {
-  vpc_id            = aws_vpc.devops_vpc.id
-  cidr_block        = "10.0.0.0/25"
+  vpc_id     = aws_vpc.devops_vpc.id
+  cidr_block = "10.0.0.0/25"
 
   tags = {
     Name = "devops-public-subnet"
@@ -63,7 +63,7 @@ resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.devops_vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.nat_gw.id
   }
 

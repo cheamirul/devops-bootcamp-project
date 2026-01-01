@@ -10,9 +10,18 @@ resource "aws_security_group" "web_server_sg" {
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
+    cidr_blocks = [
+      aws_subnet.public_subnet.cidr_block,
+      aws_subnet.private_subnet.cidr_block
+    ]
+  }
+  ingress {
+    from_port = 9100
+    to_port   = 9100
+    protocol  = "tcp"
     cidr_blocks = [
       aws_subnet.public_subnet.cidr_block,
       aws_subnet.private_subnet.cidr_block
@@ -36,9 +45,9 @@ resource "aws_security_group" "private_sg" {
   vpc_id = aws_vpc.devops_vpc.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
     cidr_blocks = [
       aws_subnet.public_subnet.cidr_block,
       aws_subnet.private_subnet.cidr_block
