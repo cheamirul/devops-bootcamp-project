@@ -2,7 +2,11 @@
 
 ## 🏗️ 1. Project Overview & Architecture
 
-## 🔗 2. Quick Links (Mandatory)
+## 🔗 2. Quick Links
+
+1. [Web application](web.cheamirul.site)
+2. [Monitoring](monitoring.cheamirul.site)
+3. [GitHub Repo](https://github.com/cheamirul/devops-bootcamp-project)
 
 ## 🛠️ 3. Technical Stack
 
