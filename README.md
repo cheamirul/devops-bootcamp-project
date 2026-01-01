@@ -4,7 +4,7 @@
 
 This project demonstrate a production-style Devops implementation on AWS using Infrastructure As Code (Terraform), configuration management (Ansible), containerization (Docker), monitoring (Prometheus & Grafana) and secure access patterns.
 
-[Architecture Diagram](./asset/diagram.png)
+![Architecture Diagram](./asset/diagram.png)
 Diagram 1: Architecure Diagram
 
 ## 🔗 2. Quick Links
