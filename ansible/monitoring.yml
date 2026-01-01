@@ -1,7 +1,25 @@
 ---
-- name: Install Prometheus using docker
-  hosts: Monitoring-Server
+- name: Deploy monitoring server using docker compose
+  hosts: monitoring
   become: true
   tasks:
-    command:
-      - apt update
+    - name: Ensure monitoring directory exists
+      file: 
+        path: /home/ubuntu/monitoring
+        state: directory
+
+    - name: Copy Prometheus configuration
+      copy:
+        src: templates/prometheus.yml
+        dest: /home/ubuntu/monitoring/prometheus.yml
+
+    - name: Deploy Docker Compose file for monitoring stack
+      template:
+        src: templates/docker-compose.yml.j2
+        dest: /home/ubuntu/monitoring/docker-compose.yml
+      
+    - name: Start monitoring services using Docker Compose
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/monitoring
+        state: present
+    

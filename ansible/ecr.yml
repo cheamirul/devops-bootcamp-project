@@ -4,10 +4,9 @@
   become: true
   tasks:
     - name: Log in to AWS ECR
-      community.docker.docker_login:
-        registry_url: "{{ ecr_registry_url }}"
-        username: AWS
-        password: "{{ lookup('amazon.aws.aws_ecr_login_password', region='ap-southeast-1') }}"
+      shell: |
+        aws ecr get-login-password --region {{ aws_region }} | sudo docker login --username AWS --password-stdin {{ ecr_registry_url }}
+      become: false
 
     - name: Pull image from ECR
       community.docker.docker_image:

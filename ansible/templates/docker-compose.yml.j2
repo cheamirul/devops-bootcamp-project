@@ -23,8 +23,10 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared-monitoring
     restart: unless-stopped
-    command: tunnel --no-autoupdate run --token {{ cludflare_tunnel_token }}
+    command: tunnel --no-autoupdate run --token {{ cloudflare_tunnel_token }}
     networks:
       - monitoring
 networks:
-  monitoring
+  monitoring: {}
+volumes:
+  grafana-storage: {}

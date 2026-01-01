@@ -30,7 +30,7 @@
     - name: Configure AWS CLI with access key, secret key, and region
       become: false
       become_user: ubuntu
-      command: > /usr/local/bin/aws configure set {{ item.key }} {{ item.value }}
+      command: /usr/local/bin/aws configure set {{ item.key }} {{ item.value }}
       loop:
         - { key: 'aws_access_key_id', value: '{{ aws_access_key_id }}' }
         - { key: 'aws_secret_access_key', value: '{{ aws_secret_access_key }}' }
