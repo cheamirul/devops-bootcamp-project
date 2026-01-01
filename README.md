@@ -4,8 +4,8 @@
 
 ## 🔗 2. Quick Links
 
-1. [Web application](web.cheamirul.site)
-2. [Monitoring](monitoring.cheamirul.site)
+1. [Web application](https://web.cheamirul.site)
+2. [Monitoring](https://monitoring.cheamirul.site)
 3. [GitHub Repo](https://github.com/cheamirul/devops-bootcamp-project)
 
 ## 🛠️ 3. Technical Stack
