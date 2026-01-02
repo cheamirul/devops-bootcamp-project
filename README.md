@@ -25,9 +25,10 @@ The architecture is intentionally built around **Least Privilege** and **Defense
 
 | Component | Access Method | URL |
 |----------|---------------|-----|
-| Web Application | Public (Elastic IP) | http://web.cheamirul.site |
-| Monitoring (Grafana) | Cloudflare Tunnel | https://monitoring.cheamirul.site |
-| GitHub Repository | GitHub | https://github.com/cheamirul/devops-bootcamp-project |
+| Web Application | Public (Elastic IP) | [http://web.cheamirul.site](http://web.cheamirul.site) |
+| Monitoring (Grafana) | Cloudflare Tunnel | [https://monitoring.cheamirul.site](https://monitoring.cheamirul.site) |
+| GitHub Repository | GitHub | [https://github.com/cheamirul/devops-bootcamp-project](https://github.com/cheamirul/devops-bootcamp-project) |
+
 
 ## 🛠️ 3. Infrastructure Provisioning (Terraform)
 
