@@ -44,3 +44,4 @@ terraform.rc
 
 # ansible group_vars
 ansible/group_vars/*.yml
+!ansible/group_vars/*.vault.yml
