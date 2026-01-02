@@ -38,7 +38,7 @@ module "ansible_controller" {
     sudo PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install --include-deps ansible
     pipx ensurepath
     sudo chmod -R 755 /opt/pipx
-    echo "${file("../../ansible/ansible-key.pem")}" > /home/ssm-user/ansible-key.pem
+    echo "${file("../ansible/ansible-key.pem")}" > /home/ssm-user/ansible-key.pem
     chmod 400 /home/ssm-user/ansible-key.pem
     chown ssm-user:ssm-user /home/ssm-user/ansible-key.pem
     mkdir -p /home/ssm-user/ansible
